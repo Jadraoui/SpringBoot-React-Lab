@@ -8,6 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
@@ -19,9 +21,7 @@ import lombok.RequiredArgsConstructor;
 @NoArgsConstructor
 public class Voiture {
 	
-	@ManyToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "proprietaire")
-	private Proprietaire proprietaire;
+	
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
@@ -44,6 +44,11 @@ public class Voiture {
 	
 	@NonNull
 	private int prix;
+	
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "proprietaire")
+	@JsonIgnore
+	private Proprietaire proprietaire;
 	
 
 }
