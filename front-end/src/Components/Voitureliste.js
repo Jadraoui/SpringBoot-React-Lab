@@ -1,10 +1,11 @@
 import React from 'react';
+import {Card,Table} from 'react-bootstrap';
 
 
 
 class Voitureliste extends React.Component {
 
-    constructor(props) {
+    /*constructor(props) {
         super(props);
         this.state = { voitures: [] };
     }
@@ -18,12 +19,32 @@ class Voitureliste extends React.Component {
                 });
             })
         .catch(err => console.error(err));
-    }
+    }*/
 
 
     render(){
         return (
-            <h1>Hi I'm voiture list component</h1>
+            <Card > 
+                <Card.Header> Liste Voitures </Card.Header>
+                <Card.Body>
+                    <Table>
+                        <thead>
+                            <tr>
+                                <th>Marque</th>
+                                <th>Modele</th>
+                                <th>Couleur</th>
+                                <th>Annee</th>
+                                <th>Prix</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr align="center">
+                                <td colSpan="6">Aucune Voiture n'est disponible</td>
+                            </tr>
+                        </tbody>
+                    </Table>
+                </Card.Body>
+            </Card>
         );
     }
 }

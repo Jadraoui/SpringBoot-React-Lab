@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import { Container, Row, Col} from 'react-bootstrap';
-import './App.css';
+//import './App.css';
 import Bienvenue from './Components/Bienvenue';
 import Navigationbar from './Components/Navigationbar';
 import Voiture from './Components/Voiture';
 import Voitureliste from './Components/Voitureliste';
+import Footer from './Components/Footer';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 class App extends Component {
@@ -25,6 +26,7 @@ class App extends Component {
                 </Col>
               </Row>
             </Container>
+            <Footer />
         </Router>
     );
   }
