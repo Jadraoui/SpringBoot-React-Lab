@@ -25,7 +25,7 @@ public class Voiture {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
-	private long id;
+	private int id;
 	
 	@NonNull
 	private String marque;

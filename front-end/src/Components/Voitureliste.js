@@ -21,6 +21,19 @@ class Voitureliste extends React.Component {
             });
     }
 
+    deleteVoiture = (voitureId) => {
+        axios.delete("http://localhost:8080/voitures/"+voitureId)
+                .then(response => {
+                    if(response.data != null){
+                        alert("Voiture supprimée avec succès.");
+                        this.setState({
+                            voitures: this.state.voitures.filter(voiture => voiture.id !== voitureId)
+                        })
+                }
+             }
+        )
+    };
+
 
     render(){
         return (
@@ -52,8 +65,12 @@ class Voitureliste extends React.Component {
                                         <td>{voiture.prix}</td>
                                         <td>
                                             <ButtonGroup>
-                                                <Button size="sm" variant="outline-primary"><FontAwesomeIcon icon={faEdit}/></Button>{' '}
-                                                <Button size="sm" variant="outline-danger"><FontAwesomeIcon icon={faTrash}/></Button>
+                                                <Button size="sm" variant="outline-primary">
+                                                    <FontAwesomeIcon icon={faEdit}/>
+                                                </Button>{' '}
+                                                <Button size="sm" variant="outline-danger" onClick={this.deleteVoiture.bind(this,voiture.id)}>
+                                                    <FontAwesomeIcon icon={faTrash}/>
+                                                </Button>
                                             </ButtonGroup>
                                         </td>
                                     </tr>

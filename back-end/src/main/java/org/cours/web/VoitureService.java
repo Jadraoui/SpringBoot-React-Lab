@@ -6,6 +6,7 @@ import java.util.List;
 import org.cours.modele.Voiture;
 import org.cours.modele.VoitureRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -24,5 +25,10 @@ public class VoitureService {
 	public void ajouterVoiture(Voiture voiture) {
 		voitureRepo.save(voiture);
 	}
+	
+	public void supprimerVoiture(int id) {
+		voitureRepo.deleteById( id);
+	}
+	
 
 }

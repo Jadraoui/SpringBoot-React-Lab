@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
-public interface VoitureRepo extends CrudRepository<Voiture, Long>{
+public interface VoitureRepo extends CrudRepository<Voiture, Integer>{
 	
 	// Sélectionnez les voitures par marque
 	List<Voiture> findByMarque(@Param("marque") String marque);

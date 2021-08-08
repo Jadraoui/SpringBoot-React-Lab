@@ -6,10 +6,12 @@ import org.cours.modele.Voiture;
 import org.cours.modele.VoitureRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -29,6 +31,11 @@ public class VoitureController {
 	public void addVoiture(@RequestBody Voiture voiture) {
 		System.out.println(voiture);
 		voitureService.ajouterVoiture(voiture);
+	}
+	
+	@RequestMapping(method=RequestMethod.DELETE, value = "/voitures/{id}")
+	public void deleteVoiture(@PathVariable Integer id) {
+		voitureService.supprimerVoiture(id);
 	}
 	
 
