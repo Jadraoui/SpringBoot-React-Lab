@@ -1,25 +1,25 @@
 import React from 'react';
-import {Card,Table} from 'react-bootstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEdit,faTrash } from '@fortawesome/free-solid-svg-icons'
+import {ButtonGroup, Button,Card,Table} from 'react-bootstrap';
+const axios = require('axios');
 
 
 
 class Voitureliste extends React.Component {
 
-    /*constructor(props) {
+    constructor(props) {
         super(props);
         this.state = { voitures: [] };
     }
 
     componentDidMount() {
-        fetch('http://localhost:8080/voitures')
-            .then((response) => response.json())
-            .then((responseData) => {
-                this.setState({
-                    voitures: responseData
-                });
-            })
-        .catch(err => console.error(err));
-    }*/
+        axios.get('http://localhost:8080/voitures')
+            .then(response => response.data)
+            .then((data) => {
+                this.setState({voitures:data});
+            });
+    }
 
 
     render(){
@@ -27,10 +27,11 @@ class Voitureliste extends React.Component {
             <Card > 
                 <Card.Header> Liste Voitures </Card.Header>
                 <Card.Body>
-                    <Table>
+                    <Table bordered hover striped variant="gray">
                         <thead>
                             <tr>
                                 <th>Marque</th>
+                                <th>Immatricule</th>
                                 <th>Modele</th>
                                 <th>Couleur</th>
                                 <th>Annee</th>
@@ -38,9 +39,26 @@ class Voitureliste extends React.Component {
                             </tr>
                         </thead>
                         <tbody>
-                            <tr align="center">
-                                <td colSpan="6">Aucune Voiture n'est disponible</td>
-                            </tr>
+                                {this.state.voitures.length===0 ?
+                                <tr align="center">
+                                    <td colSpan="6"> Voitures disponibles</td>
+                                </tr>: this.state.voitures.map((voiture)=> (
+                                    <tr key={voiture.id}>
+                                        <td>{voiture.marque}</td>
+                                        <td>{voiture.immatricule}</td>
+                                        <td>{voiture.modele}</td>
+                                        <td>{voiture.couleur}</td>
+                                        <td>{voiture.annee}</td>
+                                        <td>{voiture.prix}</td>
+                                        <td>
+                                            <ButtonGroup>
+                                                <Button size="sm" variant="outline-primary"><FontAwesomeIcon icon={faEdit}/></Button>{' '}
+                                                <Button size="sm" variant="outline-danger"><FontAwesomeIcon icon={faTrash}/></Button>
+                                            </ButtonGroup>
+                                        </td>
+                                    </tr>
+                                    ))
+                                }
                         </tbody>
                     </Table>
                 </Card.Body>
